@@ -1,0 +1,18 @@
+{
+  "project_name": "CS_Theory_Auto_Grading",
+  "created_date": null,
+  "paths": {
+    "project_root": "/content/drive/MyDrive/project",
+    "data_raw": "/content/drive/MyDrive/project/data_raw",
+    "data_processed": "/content/drive/MyDrive/project/data_processed",
+    "features": "/content/drive/MyDrive/project/features",
+    "models": "/content/drive/MyDrive/project/models",
+    "results": "/content/drive/MyDrive/project/results",
+    "visualizations": "/content/drive/MyDrive/project/visualizations"
+  },
+  "data_info": {},
+  "model_info": {
+    "embedding_model": "all-MiniLM-L6-v2",
+    "grading_model": "mistralai/Mistral-7B-Instruct-v0.3"
+  }
+}
