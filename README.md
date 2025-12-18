@@ -82,17 +82,38 @@ Generated data is not committed to GitHub
 
 Planned Steps
 
-# ⏳ Step 3 — Multi-PDF Processing
+---
 
-Process all PDFs automatically
+## ⏳ Step 3 — LLM-Assisted Chunk Enrichment (Planned)
 
-One JSON output per PDF
+**Goal:**  
+Enhance existing paragraph-aware chunks using an external LLM (e.g. Gemini API)
+to improve retrieval quality before embedding.
 
-Reuse existing chunking logic
+**Input:**
+- JSON chunks generated from Step 2
+- Each chunk contains raw paragraph-level text
 
-Planned notebook:
+**Processing:**
+- Send chunks to an LLM (Gemini or similar) with a structured prompt
+- Extract and/or generate:
+  - Cleaned and normalized text
+  - High-level topic labels (e.g. Memory, CPU, Cache, OS)
+  - Subtopics (e.g. Virtual Memory, Pipelining, Cache Coherence)
+  - Optional short summary per chunk
+- Validate and normalize LLM output into a consistent JSON schema
 
-02_multi_pdf_processing.ipynb
+**Output Format (JSON):**
+```json
+{
+  "id": 1,
+  "source": "example.pdf",
+  "text": "cleaned chunk text",
+  "topic": "Memory Systems",
+  "subtopic": "Cache Organization",
+  "summary": "This chunk explains cache structure and mapping techniques."
+}
+```
 
 # ⏳ Step 4 — Embeddings
 
