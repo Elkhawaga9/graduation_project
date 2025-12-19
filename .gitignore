@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.env
+gradproj_env/
+
+# Generated data (LLM outputs)
+raw_llm_responses/
+json_llm_responses/
+data_json/
+
+# Jupyter
+.ipynb_checkpoints/
