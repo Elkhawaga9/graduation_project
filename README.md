@@ -84,34 +84,39 @@ Planned Steps
 
 ---
 
-## ⏳ Step 3 — LLM-Assisted Chunk Enrichment (Planned)
+### ✅ Step 3 — LLM-Assisted Chunk Enrichment
+
+**Notebook:**  
+`notebooks/02_llm_deepseekr1t2_chunk_enrichment.ipynb`
 
 **Goal:**  
-Enhance existing paragraph-aware chunks using an external LLM (e.g. Gemini API)
-to improve retrieval quality before embedding.
+Enhance paragraph-aware chunks using DeepSeek R1T2 Chimera for RAG preprocessing, improving retrieval quality before embeddings.
 
 **Input:**
-- JSON chunks generated from Step 2
+- JSON chunks from Step 2
 - Each chunk contains raw paragraph-level text
 
 **Processing:**
-- Send chunks to an LLM (Gemini or similar) with a structured prompt
+- Send chunks to DeepSeek R1T2 Chimera (free via OpenRouter) using structured prompts
 - Extract and/or generate:
   - Cleaned and normalized text
-  - High-level topic labels (e.g. Memory, CPU, Cache, OS)
-  - Subtopics (e.g. Virtual Memory, Pipelining, Cache Coherence)
-  - Optional short summary per chunk
+  - High-level topic labels (e.g., Memory, CPU, Cache, OS)
+  - Subtopics (e.g., Virtual Memory, Pipelining, Cache Coherence)
 - Validate and normalize LLM output into a consistent JSON schema
 
-**Output Format (JSON):**
+**Outputs:**
+- **Raw LLM responses:** `raw_llm_responses/<pdf_name>_raw.json`  
+  - Stores full LLM outputs per chunk
+- **Parsed/enriched JSON:** `json_llm_responses/<pdf_name>_chunks_enriched.json`  
+  - Structured JSON with cleaned text, topic, subtopic
+
+**Example Output JSON:**
 ```json
 {
   "id": 1,
   "source": "example.pdf",
-  "text": "cleaned chunk text",
-  "topic": "Memory Systems",
-  "subtopic": "Cache Organization",
-  "summary": "This chunk explains cache structure and mapping techniques."
+  "original_text": "chunk text here",
+  "llm_response": "cleaned text + topic/subtopic"
 }
 ```
 
