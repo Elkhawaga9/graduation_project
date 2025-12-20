@@ -18,9 +18,9 @@ what is done and what is planned next.
 ## Current Status
 
 **Stage:** Data preprocessing & chunking  
-**Status:** ✅ Single-PDF pipeline completed
+**Status:** ✅ embeddings completed
 
-Last update: **Dec 17, 2025**
+Last update: **Dec 20, 2025**
 
 ---
 
@@ -120,13 +120,28 @@ Enhance paragraph-aware chunks using DeepSeek R1T2 Chimera for RAG preprocessing
 }
 ```
 
-# ⏳ Step 4 — Embeddings
+## ✅ Step 4 — Embeddings (Completed)
 
-Convert chunks into embeddings
+**Goal:**  
+Convert enriched JSON chunks into embeddings for RAG retrieval.
 
-Evaluate suitable embedding models
+**Input:**  
+- JSON chunks from `json_llm_responses/`
 
-Prepare data for vector storage
+**Processing:**  
+- Select which JSON file to embed
+- Generate embeddings using a sentensetransformer
+- Save embeddings locally in `embeddings/` folder
+- Each JSON file can have a separate embedding file
+
+**Output:**  
+- `.pkl` or `.parquet` files in `grad_embeddings/`
+- Embeddings ready for vector storage in FAISS or Chroma
+
+**Notes:**  
+- PDFs and JSON files remain untracked in Git
+- Supports free-tier embedding models to minimize cost
+```
 
 # ⏳ Step 5 — Vector Store
 
