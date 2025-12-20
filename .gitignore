@@ -8,6 +8,7 @@ gradproj_env/
 raw_llm_responses/
 json_llm_responses/
 data_json/
+embeddings/
 
 # Jupyter
 .ipynb_checkpoints/
