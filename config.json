@@ -1,18 +1,26 @@
 {
   "project_name": "CS_Theory_Auto_Grading",
-  "created_date": null,
+  "created_date": "01/12/2025",
   "paths": {
-    "project_root": "/content/drive/MyDrive/project",
-    "data_raw": "/content/drive/MyDrive/project/data_raw",
-    "data_processed": "/content/drive/MyDrive/project/data_processed",
-    "features": "/content/drive/MyDrive/project/features",
-    "models": "/content/drive/MyDrive/project/models",
-    "results": "/content/drive/MyDrive/project/results",
-    "visualizations": "/content/drive/MyDrive/project/visualizations"
+    "project_root": "/content/drive/MyDrive/graduation_project",
+    "data_raw": "/content/drive/MyDrive/graduation_project/data_raw",
+    "data_json": "/content/drive/MyDrive/graduation_project/data_json",
+    "embeddings": "/content/drive/MyDrive/graduation_project/embeddings",
+    "json_llm_responses": "/content/drive/MyDrive/graduation_project/json_llm_responses",
+    "raw_llm_responses": "/content/drive/MyDrive/graduation_project/raw_llm_responses",
+    "vector_store": "/content/drive/MyDrive/graduation_project/vector_store",
+    "notebooks": "/content/drive/MyDrive/graduation_project/notebooks",
+    "models": "/content/drive/MyDrive/graduation_project/models",
+    "results": "/content/drive/MyDrive/graduation_project/results",
+    "visualizations": "/content/drive/MyDrive/graduation_project/visualizations"
   },
-  "data_info": {},
+  "data_info": {
+    "source_pdf": "Computer Systems A Programmers Perspective by Randal E. Bryant, David R. OHallaron (z-lib.org).pdf",
+    "additional_csv": "data_khawaga_4_10.csv"
+  },
   "model_info": {
     "embedding_model": "all-MiniLM-L6-v2",
-    "grading_model": "mistralai/Mistral-7B-Instruct-v0.3"
+    "rag_model": "mistralai/Mistral-7B-Instruct-v0.3",
+    "planned_llm": "Qwen-7B"
   }
 }

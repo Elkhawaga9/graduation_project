@@ -10,7 +10,7 @@ what is done and what is planned next.
 
 **Title:** RAG-based Question Answering for Computer Systems  
 **Approach:** Retrieval-Augmented Generation (RAG)  
-**LLM (planned):** Mistral 7B  
+**LLM (planned):** Qwen 7B  
 **Domain:** Computer Systems (textbooks, PDFs)
 
 ---
@@ -18,25 +18,54 @@ what is done and what is planned next.
 ## Current Status
 
 **Stage:** Data preprocessing & chunking  
-**Status:** ✅ embeddings completed
+**Status:** ✅ Vector Store completed
 
-Last update: **Dec 20, 2025**
+Last update: **Dec 24, 2025**
+
+---
+
+## Folder Structure
+
+### `data_raw/`
+Original raw data.
+- `Computer Systems A Programmers Perspective by Randal E. Bryant, David R. OHallaron (z-lib.org).pdf` – Source PDF.  
+- `data_khawaga_4_10.csv` – Additional dataset.
+
+### `data_json/`
+JSON representations of text chunks from PDFs.
+- `*_chunks.json` – Raw text chunks extracted from PDFs.
+
+### `embeddings/`
+Vector embeddings for enriched chunks.
+- `*_chunks_enriched_embeddings.npy` – Embeddings generated from enriched JSON chunks.
+
+### `graduation_project/`
+Main project folder for scripts, models, or core project code.
+
+### `gradproj_env/`
+Virtual environment folder (Python dependencies, configurations).
+
+### `json_llm_responses/`
+Structured LLM outputs from chunk enrichment.
+- `*_chunks_enriched.json` – Enriched JSON with cleaned text, topics, and subtopics.
+
+### `raw_llm_responses/`
+Raw LLM outputs before parsing.
+- `*_chunks_raw.json` – Direct LLM responses.
+
+### `vector_store/`
+Stores vector databases for retrieval (e.g., FAISS, Milvus, Chroma).
+
+### `notebooks/`
+Jupyter notebooks for preprocessing, embedding, and analysis.
+- `01_preprocessing.ipynb` – Initial data cleaning.  
+- `01_single_pdf_processing.ipynb` – Chunking PDFs into JSON.  
+- `02_llm_deepseekr1t2_chunk_enrichment.ipynb` – LLM-assisted enrichment.  
+- `03_generate_embeddings.ipynb` – Create embeddings from enriched JSON.  
+- `04_store_embeddings.ipynb` – Save embeddings for vector storage.
 
 ---
 
-## Repository Structure
-```text
-graduation_project/
-├── data_raw/ # Raw PDFs (local only, not pushed)
-├── data_json/ # Generated JSON chunks (local only)
-├── notebooks/
-│ └── 01_single_pdf_processing.ipynb
-├── config.json
-├── README.md
-└── PROGRESS.md
-```
-
----
 
 ## Completed Steps
 
@@ -119,7 +148,7 @@ Enhance paragraph-aware chunks using DeepSeek R1T2 Chimera for RAG preprocessing
   "llm_response": "cleaned text + topic/subtopic"
 }
 ```
-
+---
 ## ✅ Step 4 — Embeddings (Completed)
 
 **Goal:**  
@@ -141,21 +170,41 @@ Convert enriched JSON chunks into embeddings for RAG retrieval.
 **Notes:**  
 - PDFs and JSON files remain untracked in Git
 - Supports free-tier embedding models to minimize cost
-```
 
-# ⏳ Step 5 — Vector Store
+---
+### ✅ Step 5 — Vector Store (Updated)
 
-Store embeddings in FAISS or Chroma
+**Goal:** Store embeddings in a vector database for efficient retrieval.
 
-Implement efficient retrieval
+**Implementation:**  
+- Using **Chroma** as the vector store (persistent).  
+- All enriched chunks from PDFs are embedded and stored in Chroma.  
+- Metadata (`source`, `topic`, `subtopic`) has been normalized to primitive types (strings) for Chroma compatibility.  
+- Supports **incremental updates** — new PDFs can be added safely without overwriting existing embeddings.  
+- Retrieval tested and ready for the RAG pipeline.
 
-# ⏳ Step 6 — RAG Pipeline
+**Next Actions:**  
+- Integrate with RAG pipeline to retrieve top-k chunks per query.  
+- Use stored embeddings with **Qwen** or other LLMs to generate grounded answers.  
+- Optionally add metadata filtering to improve retrieval relevance.
 
-Retrieve top-k chunks
+---
 
-Generate answers using Mistral 7B
+### ⏳ Step 6 — RAG Pipeline
 
-Ground responses in retrieved context
+**Goal:** Generate answers grounded in retrieved context using LLMs.
+
+**Current Status:**  
+- Chroma retrieval ready.  
+- Retrieval + LLM integration pending Qwen server setup.  
+- Prototype code for retrieval and prompt construction is prepared.
+
+**Next Actions:**  
+- Launch Qwen model (local or API) for answer generation.  
+- Test RAG pipeline with textbook questions.  
+- Fine-tune prompt formatting if necessary.
+
+---
 
 # ⏳ Step 7 — Evaluation
 
