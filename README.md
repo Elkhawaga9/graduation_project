@@ -18,7 +18,7 @@ what is done and what is planned next.
 ## Current Status
 
 **Stage:** Data preprocessing & chunking  
-**Status:** ✅ Vector Store completed
+**Status:** ✅ Qwen 7B LLM Inference (Without RAG)
 
 Last update: **Dec 24, 2025**
 
@@ -190,21 +190,53 @@ Convert enriched JSON chunks into embeddings for RAG retrieval.
 
 ---
 
-### ⏳ Step 6 — RAG Pipeline
+## ⏳ Step 6 — Qwen 7B LLM Inference (Without RAG)
 
-**Goal:** Generate answers grounded in retrieved context using LLMs.
+**Goal:**  
+Establish a baseline question-answering system using Qwen 7B without external knowledge augmentation.
 
 **Current Status:**  
-- Chroma retrieval ready.  
-- Retrieval + LLM integration pending Qwen server setup.  
-- Prototype code for retrieval and prompt construction is prepared.
+- ✅ Qwen 7B model successfully launched locally  
+- ✅ Inference notebook implemented and tested  
+- ✅ Model generates answers using only internal knowledge
 
-**Next Actions:**  
-- Launch Qwen model (local or API) for answer generation.  
-- Test RAG pipeline with textbook questions.  
-- Fine-tune prompt formatting if necessary.
+**Completed Work:**  
+- Loaded Qwen 7B model and tokenizer  
+- Implemented prompt-based question answering  
+- Evaluated responses on textbook-style questions  
+- Recorded baseline performance (accuracy, verbosity, hallucination tendency)
+
+**Outcome:**  
+- Working standalone LLM pipeline  
+- Baseline results for later comparison with RAG-enhanced inference
 
 ---
+
+## ⏳ Step 7 — Qwen 7B with Retrieval-Augmented Generation (RAG)
+
+**Goal:**  
+Enhance Qwen 7B responses by grounding answers in retrieved textbook context.
+
+**Current Status:**  
+- ✅ Chroma vector store and retriever ready  
+- 🔄 RAG integration in progress
+
+**Planned Actions:**  
+- Retrieve top-k relevant chunks from Chroma  
+- Inject retrieved context into Qwen prompt  
+- Design RAG prompt template (system + context + question)  
+- Test RAG pipeline using the same questions as Step 6
+
+**Evaluation Plan:**  
+- Compare answers with and without RAG  
+- Measure factual accuracy and relevance  
+- Analyze hallucination reduction  
+- Tune context length and chunk size
+
+**Expected Outcome:**  
+- Fully functional RAG pipeline using Qwen 7B  
+- Demonstrated improvement over standalone LLM inference
+
 
 # ⏳ Step 7 — Evaluation
 
