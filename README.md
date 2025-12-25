@@ -190,7 +190,7 @@ Convert enriched JSON chunks into embeddings for RAG retrieval.
 
 ---
 
-## ⏳ Step 6 — Qwen 7B LLM Inference (Without RAG)
+## ✅ Step 6 — Qwen 7B LLM Inference (Without RAG)
 
 **Goal:**  
 Establish a baseline question-answering system using Qwen 7B without external knowledge augmentation.
