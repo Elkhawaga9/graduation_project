@@ -190,7 +190,7 @@ Convert enriched JSON chunks into embeddings for RAG retrieval.
 
 ---
 
-## ⏳ Step 6 — Qwen 7B LLM Inference (Without RAG)
+## ✅ Step 6 — Qwen 7B LLM Inference (Without RAG)
 
 **Goal:**  
 Establish a baseline question-answering system using Qwen 7B without external knowledge augmentation.
@@ -212,33 +212,27 @@ Establish a baseline question-answering system using Qwen 7B without external kn
 
 ---
 
-## ⏳ Step 7 — Qwen 7B with Retrieval-Augmented Generation (RAG)
+## ✅ Step 7 — Hybrid Cascading Grading System (Similarity + RAG)
 
-**Goal:**  
-Enhance Qwen 7B responses by grounding answers in retrieved textbook context.
+**Goal:**
+Build a cost-efficient, high-accuracy automatic grading pipeline that prioritizes direct matches (Fast Lane) and falls back to RAG-grounded LLM judgment (Slow Lane) for complex answers.
 
-**Current Status:**  
-- ✅ Chroma vector store and retriever ready  
-- 🔄 RAG integration in progress
+**Current Status:**
+* ✅ **Models Loaded:** Qwen 2.5 7B (4-bit) & HuggingFace Embeddings (`all-MiniLM-L6-v2`) active.
+* ✅ **Vector Store:** ChromaDB connected and ready for context retrieval.
+* ✅ **Logic Implemented:** "Cascading" architecture is coded:
+    * *Tier 1:* Hybrid Similarity (Semantic + Lexical) for instant high-confidence grading.
+    * *Tier 2:* RAG (MMR Diversity Search) + Qwen 7B for grading nuanced/partial answers.
+* ✅ **Input/Output:** Batch CSV processing with JSON-enforced output format is ready.
 
-**Planned Actions:**  
-- Retrieve top-k relevant chunks from Chroma  
-- Inject retrieved context into Qwen prompt  
-- Design RAG prompt template (system + context + question)  
-- Test RAG pipeline using the same questions as Step 6
-
-**Evaluation Plan:**  
-- Compare answers with and without RAG  
-- Measure factual accuracy and relevance  
-- Analyze hallucination reduction  
-- Tune context length and chunk size
-
-**Expected Outcome:**  
-- Fully functional RAG pipeline using Qwen 7B  
-- Demonstrated improvement over standalone LLM inference
+**Planned Actions:**
+* **Run Batch Inference:** Execute the pipeline on the full `students.csv` dataset.
+* **Threshold Tuning:** Monitor the `0.85` similarity threshold. If too many correct answers are being sent to the LLM (wasting time), lower it to `0.80`.
+* **Edge Case Analysis:** Review the `graded_results.csv` specifically for grades of `0.5` and `0.75` to ensure the RAG context is providing enough detail for partial credit.
 
 
-# ⏳ Step 7 — Evaluation
+
+# ⏳ Step 8 — Evaluation
 
 Test with Computer Systems questions
 
